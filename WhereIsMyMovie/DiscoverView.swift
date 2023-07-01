@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DiscoverView: View {
     @State var searchInput: String = ""
+    @StateObject var viewModel = ViewModel()
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -23,7 +24,15 @@ struct DiscoverView: View {
                             Spacer()
                         }
                         ScrollView(.horizontal, showsIndicators: false) {
-                            
+                            ForEach(viewModel.trending) { trending in
+                                
+                                NavigationLink {
+                                    //Detail View
+                                } label: {
+                                    TrendingCardView(movie: trending)
+                                }
+                                
+                            }
                         }
                     }
                 } else {
@@ -31,6 +40,7 @@ struct DiscoverView: View {
                 }
             }
         }
+        .onAppear(perform: viewModel.loadTrending)
     }
 }
 

@@ -23,6 +23,21 @@ struct Movie: Identifiable, Decodable {
     var vote_average: Float
     var backdrop_path: String?
     
+    var backdropURL: URL? {
+        let baseURL = URL(string: "https://image.tmdb.org/t/p/w500")
+        return baseURL?.appending(path: backdrop_path ?? "")
+    }
+    
+    var posterThumbnail: URL? {
+        let baseURL = URL(string: "https://image.tmdb.org/t/p/w100")
+        return baseURL?.appending(path: poster_path ?? "")
+    }
+    
+    var poster: URL? {
+        let baseURL = URL(string: "https://image.tmdb.org/t/p/w500")
+        return baseURL?.appending(path: poster_path ?? "")
+    }
+    
     static var preview: Movie {
         return Movie(adult: false,
                      id: 23834,

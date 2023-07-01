@@ -14,21 +14,14 @@ class ViewModel: ObservableObject {
         Task {
             let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(ViewModel.key)")!
             do {
-                let (data, _) = try await
-                URLSession.shared.data
-                (from: url)
+                let (data, _) = try await URLSession.shared.data(from: url)
 
                 let trendingResult = try JSONDecoder().decode(TrendingResults.self, from: data)
                 
-                trending = trendingResult
+                trending = trendingResult.result
             } catch {
                 print("Error")
             }
-            
-            
-            
-            
-            
         }
     }
 }
