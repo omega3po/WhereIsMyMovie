@@ -18,34 +18,32 @@ struct MovieDetailView: View {
                     AsyncImage(url: movie.backdropURL) { image in
                         image.resizable()
                             .scaledToFill()
-                            .frame(height: 300)
-                    } placeholder: {
+                            .frame(width: UIScreen.main.bounds.width ,height: 300)
+                            
+                    }placeholder: {
                         Rectangle()
                             .frame(height: 300)
                     }
+                    .overlay(Text(movie.title)
+                        .foregroundColor(.white)
+                        .font(.system(size: 20, design: .rounded))
+                        .fontWeight(.heavy)
+                        .padding()
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(20, corners: [ .topRight]), alignment: .bottomLeading)
                     
-                    HStack {
-                        Text(movie.title)
-                            .foregroundColor(.white)
-                            .font(.system(size: 32, design: .rounded))
-                            .fontWeight(.heavy)
-                            .padding()
-                            .background(.ultraThinMaterial)
-                        Spacer()
-                    }
-                    .frame(width: UIScreen.main.bounds.width, height: 300)
+                    
                 }
-                
+                Spacer()
             }
             
             VStack {
-                
                 Text(movie.overview)
             }
             Spacer()
             
         }
-        .ignoresSafeArea(.all)
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
