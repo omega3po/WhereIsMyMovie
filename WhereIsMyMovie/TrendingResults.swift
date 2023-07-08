@@ -9,7 +9,7 @@ import Foundation
 
 struct TrendingResults: Decodable {
     var page: Int
-    var result: [Movie]
+    var results: [Movie]
     var total_pages: Int
     var total_results: Int
 }
@@ -42,9 +42,9 @@ struct Movie: Identifiable, Decodable {
         return Movie(adult: false,
                      id: 23834,
                      poster_path: "https://image.tmdb.org/t/p/w300",
-                     title: "Free Guy",
+                     title: "Free Guy Was A Bad Guy In The Movie",
                      overview: "some demo text here",
-                     vote_average: 5.5,
+                     vote_average: 9,
                      backdrop_path: "https://image.tmdb.org/t/p/w300")
     }
 }
