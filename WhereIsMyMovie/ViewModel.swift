@@ -27,8 +27,9 @@ class ViewModel: ObservableObject {
         }
     }
     func loadSearch(input: String) {
+        let inputValue: String = replaceSpace(input: input)
         Task {
-            let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(ViewModel.key)&language=en-US&page=1&include_adult=false&query=\(input)")!
+            let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(ViewModel.key)&language=en-US&page=1&include_adult=false&query=\(inputValue)")!
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 
@@ -39,5 +40,9 @@ class ViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
         }
+    }
+    func replaceSpace(input: String) -> String {
+        let inputValue = input.replacingOccurrences(of: " ", with: "+")
+        return inputValue
     }
 }
