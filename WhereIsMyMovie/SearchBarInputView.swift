@@ -39,7 +39,7 @@ struct SearchBarInputView: View {
                 .foregroundColor(Color("Pale Yellow"))
                 .frame(width: UIScreen.main.bounds.width, height: 1)
         }
-        .background(Color("Royal Blue"))
+        .background(Color("Dark Gray"))
         .onAppear{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 keyboardFocused = true

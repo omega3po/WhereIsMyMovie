@@ -14,17 +14,12 @@ struct DiscoverView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color("Royal Blue")
+                Color("Dark Gray")
                     .edgesIgnoringSafeArea(.all)
-                    
+                
                 VStack (spacing: 0){
-                    NavigationLink {
-                        SearchView()
-                            .navigationBarBackButtonHidden(true)   
-                    } label: {
-                        SearchBarView()
-                    }
-                        
+                    SearchBarView(Input: $searchInput)
+                    
                     
                     //A line
                     Rectangle()
@@ -35,39 +30,43 @@ struct DiscoverView: View {
                     
                     ScrollView {
                         if searchInput.isEmpty {
-                            VStack {
+                            VStack (spacing: 0) {
                                 HStack {
                                     Text("Trending")
                                         .foregroundColor(.white)
                                         .padding()
-                                        .font(.system(size: 30, design: .rounded))
-                                        .bold()
+                                        .font(.system(size: 30))
+                                    
                                     
                                     Spacer()
                                 }
                                 ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 14) {
+                                    HStack(spacing: 0) {
                                         ForEach(viewModel.trending) { trending in
                                             
                                             NavigationLink {
-                                                MovieDetailView(movie: trending)
+                                                MovieDetailView(movie: trending).navigationBarBackButtonHidden(true)
                                             } label: {
                                                 TrendingCardView(movie: trending)
-                                        
-                                                    
+                                                
+                                                
                                             }
                                             
                                         }
                                     }
                                 }
+                                
                             }
                         } else {
-                            
+                            SearchResultView(results: viewModel.searchResults)
                         }
                     }
                 }
             }
         }
+        .onChange(of: searchInput, perform: { value in
+            viewModel.loadSearch(input: value)
+        })
         .onAppear(perform: viewModel.loadTrending)
     }
 }

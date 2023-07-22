@@ -11,11 +11,8 @@ struct SearchView: View {
     
     var body: some View {
         ZStack {
-            Color("Dark Blue")
-                .ignoresSafeArea(.all)
             VStack {
                 SearchBarInputView()
-                Spacer()
             }
         }
     }

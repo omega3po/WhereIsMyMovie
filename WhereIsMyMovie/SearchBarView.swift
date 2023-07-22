@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct SearchBarView: View {
+    @Binding var Input: String
+    @FocusState var keyboardFocused: Bool
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Image(systemName: "popcorn")
                     .foregroundColor(Color("Pale Yellow"))
-                Text("Search Your Movie")
-                    .foregroundColor(.gray)
+                SuperTextField(
+                    placeholder: Text("Search Your Movie").foregroundColor(.white.opacity(0.7)),
+                    text: $Input)
+                .focused($keyboardFocused)
+                .foregroundColor(.white)
+                .autocorrectionDisabled(true)
                 
                 Spacer()
                 
@@ -28,8 +34,3 @@ struct SearchBarView: View {
     }
 }
 
-struct SearchBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchBarView()
-    }
-}

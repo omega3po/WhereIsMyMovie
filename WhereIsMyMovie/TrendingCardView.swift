@@ -25,7 +25,7 @@ struct TrendingCardView: View {
                     .scaledToFill()
                     .frame(width: 240, height: 240 * 0.70588)
             } placeholder: {
-                Rectangle().fill(Color(red:61/255,green:61/255,blue:88/255))
+                Rectangle().fill(Color.gray)
                     .frame(width: 240, height: 240 * 0.70588)
             }
             
@@ -36,7 +36,7 @@ struct TrendingCardView: View {
             
             VStack(alignment: .leading, spacing: 6) {
                 StarView(movie_vote_average: movie.vote_average)
-                    .padding(.horizontal)
+                    .padding(.horizontal, 6)
                 HStack {
                     Text(movieTitle)
                         .lineLimit(1)
@@ -46,12 +46,13 @@ struct TrendingCardView: View {
                         .foregroundColor(.white)
                 }
                 .frame(width: 150)
-                .background(Color.black.opacity(0.3))
+                .background(.ultraThinMaterial.opacity(0.75))
                 .cornerRadius(20, corners: [ .topRight])
             }
             
         }
-        .cornerRadius(8)
+        .cornerRadius(6)
+        .padding(.leading)
     }
     func shorten(movieTitle: String) -> String {
         var shortTitle: String = ""

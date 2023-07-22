@@ -22,6 +22,7 @@ struct Movie: Identifiable, Decodable {
     var overview: String
     var vote_average: Float
     var backdrop_path: String?
+    var popularity: Float
     
     var backdropURL: URL? {
         let baseURL = URL(string: "https://image.tmdb.org/t/p/w500")
@@ -45,6 +46,8 @@ struct Movie: Identifiable, Decodable {
                      title: "Free Guy Was A Bad Guy In The Movie",
                      overview: "some demo text here",
                      vote_average: 9,
-                     backdrop_path: "https://image.tmdb.org/t/p/w300")
+                     backdrop_path: "https://image.tmdb.org/t/p/w300",
+                     popularity: 0.6)
+        
     }
 }
